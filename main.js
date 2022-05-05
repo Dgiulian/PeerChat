@@ -39,7 +39,7 @@ let init = async () => {
 
   localStream = await navigator.mediaDevices.getUserMedia({
     video: true,
-    audio: false,
+    audio: true,
   });
   document.getElementById("user-1").srcObject = localStream;
   channel.on('MemberJoined', handleUserJoined)
@@ -135,6 +135,17 @@ async function toggleCamera () {
     document.getElementById('camera-btn').style.backgroundColor = 'rgba(179,102,249,.5)'  
   }
 }
+async function toggleMic () {
+  const audioTrack = localStream.getTracks().find(track=>track.kind === 'audio');
+  if(audioTrack.enabled) {
+    audioTrack.enabled = false
+    document.getElementById('mic-btn').style.backgroundColor = 'rgba(255,80,80,1)'
+  } else {
+    audioTrack.enabled = true
+    document.getElementById('mic-btn').style.backgroundColor = 'rgba(179,102,249,.5)'  
+  }
+}
 window.addEventListener('beforeunload', () => leaveChannel())
 document.getElementById('camera-btn').addEventListener('click', toggleCamera)
+document.getElementById('mic-btn').addEventListener('click', toggleMic)
 init();
