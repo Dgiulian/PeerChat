@@ -8,6 +8,13 @@ let peerConnection;
 const token = null;
 const APP_ID = import.meta.env.VITE_APP_ID;
 const uid = Math.floor(Math.random() * 10000) + '';
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const roomId = urlParams.get('room');
+if(!roomId) {
+  window.location = 'lobby.html'
+}
+
 let client;
 let channel;
 
@@ -26,7 +33,7 @@ let init = async () => {
   // Login
   await client.login({ uid, token });
   // Find or create channel by name
-  channel = client.createChannel('main');
+  channel = client.createChannel(roomId);
   // Join channel
   channel.join()
 
