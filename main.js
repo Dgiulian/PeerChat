@@ -124,5 +124,17 @@ async function leaveChannel() {
   await channel.leave()
   await client.logout()
 }
+
+async function toggleCamera () {
+  const videoTrack = localStream.getTracks().find(track=>track.kind === 'video');
+  if(videoTrack.enabled) {
+    videoTrack.enabled = false
+    document.getElementById('camera-btn').style.backgroundColor = 'rgba(255,80,80,1)'
+  } else {
+    videoTrack.enabled = true
+    document.getElementById('camera-btn').style.backgroundColor = 'rgba(179,102,249,.5)'  
+  }
+}
 window.addEventListener('beforeunload', () => leaveChannel())
+document.getElementById('camera-btn').addEventListener('click', toggleCamera)
 init();
