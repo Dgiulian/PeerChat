@@ -51,6 +51,9 @@ async function createPeerConnection(memberId) {
   remoteStream = new MediaStream();
   document.getElementById("user-2").srcObject = remoteStream;
   document.getElementById("user-2").style.display = 'block';
+  
+  document.getElementById("user-1").classList.add('smallFrame');
+  
 
   // Add tracks to local connection
   localStream.getTracks().forEach(track => {
@@ -118,6 +121,7 @@ async function addAnswer(answer) {
 }
 async function handleUserLeft(memberId) {
   document.getElementById('user-2').style.display = 'none';
+  document.getElementById("user-1").classList.remove('smallFrame');
   await leaveChannel();
 }
 async function leaveChannel() {
