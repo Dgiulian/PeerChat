@@ -1,16 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="lobby.css">
   <title>Peer ChatLobby</title>
 </head>
+
 <body>
-  <form action="index.html" method="GET" id="join-form">
-    <input type="text" name="room" required>
-    <button type="submit">Join room</button>
-  </form>
+  <main id="loby-container">
+    <div id="form-container">
+      <div id="form__container__header">
+        <p>Create a new form</p>
+      </div>
+      <div id="form__content__wrapper">
+        
+        <form action="index.html" method="GET" id="join-form">
+          <input type="text" name="room" required>
+          <button type="submit">Join room</button>
+        </form>
+      </div>
+    </div>
+  </main>
 </body>
 <script src="lobby.js"></script>
+
 </html>
